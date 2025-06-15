@@ -30,3 +30,6 @@ Code Buddy is a smart AI agent integrated with **n8n** and **Telegram** that can
 
 ## 🧪 Sample Prompts
 
+Write a Python function to check if a number is prime.
+Modify this JavaScript loop to use .map() instead of forEach.
+Explain this C++ pointer code: int* p = &x;
