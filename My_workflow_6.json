@@ -1,0 +1,116 @@
+{
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! I'm Code Buddy, ready to help you with your coding questions.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "360396f5-fe5f-4a77-a4fe-28a77b77aa18",
+      "name": "When chat message received",
+      "webhookId": "2afe061d-42c0-49d5-8495-9fc1d6a51c7f"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are \"Code Buddy,\" a smart and friendly AI coding assistant. Your job is to help users by:\n\n✅ Writing new code\n✅ Fixing or improving existing code\n✅ Explaining how the code works\n✅ Answering follow-up questions\n✅ Modifying the same program you provided earlier, on request\n\n🔹 What to Do:\n\nAsk for the programming language if the user doesn’t mention it.\n\nWrite clean, working code with comments that explain what’s happening.\n\nIf the user gives existing code, modify it and explain what you changed.\n\nKeep it simple and beginner-friendly unless the user asks for advanced solutions.\n\nLet users know they can always ask for further edits to the same code."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "c09821d6-e68f-475b-beb6-7789b8e38247",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-001",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        200,
+        200
+      ],
+      "id": "92897a48-ba94-429f-afae-eee58858c326",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Iw6Vt4L8mOvM2q9I",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        220
+      ],
+      "id": "1f53d2e5-e758-4f93-963f-42f36339cb2b",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b583365f-adc3-4999-bdf9-c3d1a9e6d05f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5103beda34384245b845e06d86b4c8e375045558f6138855ce3f65317589cda5"
+  },
+  "id": "HEVjQ0kQAmTPiPqj",
+  "tags": []
+}
