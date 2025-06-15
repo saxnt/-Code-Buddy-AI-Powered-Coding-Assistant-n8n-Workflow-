@@ -28,7 +28,7 @@
 | Tool       | Purpose                           |
 |------------|-----------------------------------|
 | n8n        | Visual workflow orchestration     |
-| OpenAI API | Code generation & explanation     |
+| Gemini API | Code generation & explanation     |
 | Webhook UI | Frontend chat interface (n8n)     |
 
 ---
